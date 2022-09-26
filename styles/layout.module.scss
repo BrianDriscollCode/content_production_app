@@ -1,0 +1,23 @@
+
+
+.ui_container {
+
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    background-color: aquamarine;
+
+}
+
+.rightside_container {
+    width:100%;
+}
+
+.content_container {
+    display: flex;
+    justify-content: center;
+}
+
+.content_wrapper {
+    width: 100%;
+}
