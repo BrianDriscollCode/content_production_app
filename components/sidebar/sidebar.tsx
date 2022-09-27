@@ -1,4 +1,4 @@
-import styles from "../../styles/sidebar.module.css";
+import styles from "../../compiled_styles/sidebar.module.css";
 import Link from "next/link"
 
 const sidebar = () => {
@@ -17,6 +17,7 @@ const sidebar = () => {
             <div className={styles.bottom_section}> 
                 <Link href="/"> Home </Link> 
                 <Link href="/calendar"> Calendar </Link> 
+                <Link href="/calendarV2"> CalendarV2 </Link>
             </div>
         </div>
 

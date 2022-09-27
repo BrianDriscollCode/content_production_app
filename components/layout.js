@@ -1,7 +1,7 @@
 import React from "react";
 import Navbar from "./navbar";
 import Sidebar from "./sidebar/sidebar"
-import styles from "../styles/layout.module.css";
+import styles from "../compiled_styles/layout.module.css";
 
 const Layout = ( {children} ) => {
 
@@ -16,9 +16,9 @@ const Layout = ( {children} ) => {
                 <div className={styles.rightside_container}>
                     <Navbar /> 
                     <div className={styles.content_container}>
-                        <div className={styles.content_wrapper}>
+                        
                             { children }
-                        </div>
+                        
                     </div>
 
                 </div>

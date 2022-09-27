@@ -1,12 +1,11 @@
 import type { NextPage } from 'next';
-import styles from '../styles/Page.module.css';
-import Calendar from "../components/calendar/Calendar";
+import styles from '../compiled_styles/Page.module.css';
+
 
 const Home: NextPage = () => {
   return (
     <div className={styles.container}>
-     
-        index
+      Home
 
     </div>
   )

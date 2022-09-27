@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect} from "react";
+import * as ReactDOM from 'react-dom';
 import Header_Input from "./Header_Input";
-import styles from "../../styles/Calendar.module.scss";
+import styles from "../../compiled_styles/Calendar.module.css";
 
 const Calendar = () => {
 
@@ -14,6 +15,14 @@ const Calendar = () => {
 
     }, [month, year])
 
+    const renderSingleDiv = (target: any) => { // generate single element
+        console.log('render div')
+        console.log(target)
+        
+        // let element = React.createElement("div", {className: "crud-card"}, "NewDiv");
+        // ReactDOM.render(element, document.getElementById('test'))
+    }
+
     const create_calendar_cells = () => {
         
         let temporary_calendar_storage = [];
@@ -22,6 +31,8 @@ const Calendar = () => {
         let startDay = new Date(year, month).getDay() // Day month starts (Monday through Sunday)
         let rows;
         let lastDayOfMonth = (32 - new Date(year, month, 32).getDate())
+        let uniqueKey = 0;
+        let uniqueOuterKey = 0;
 
         //calculate how many rows based on:
         // (1) What day the month stars (Monday through Sunday)
@@ -68,29 +79,33 @@ const Calendar = () => {
             //Date prints via "printDay: function" and  uses 2 parameters (startDay, dayOfWeek: 0-6)
             //  Example: 0 = Monday, 6 = Saturday
             temporary_calendar_storage[i] = 
-            
-            <tr>
+        
+            <tr key={uniqueOuterKey += 1}>
                 <td 
                     className={styles.cellDate}
                     style={startDay > 0 && printOk === false || currentDay + 1 > lastDayOfMonth  ? {backgroundColor: 'grey'}: {}}
+                    key={uniqueKey += 1}
+                    id="test"
                 > 
                     <div className={styles.dateNumber}>
                         { 
                             printDay(startDay, 0)
                         }
                     </div>
-                    <div className={styles.cellContent}>
+                    <div className={styles.cellContent} onClick={(e) => renderSingleDiv(e.target)}>
                         {
                             startDay > 0 && printOk === false || currentDay > lastDayOfMonth ? 
                             null:
                             "content"
                         }
+                    
                     </div>
                 </td>
 
                 <td 
                     className={styles.cellDate}
                     style={startDay > 1 && printOk === false || currentDay + 1 > lastDayOfMonth  ? {backgroundColor: 'grey'}: {}}
+                    key={uniqueKey += 1}
                 >
                     <div className={styles.dateNumber}>
                         { 
@@ -109,6 +124,7 @@ const Calendar = () => {
                 <td 
                     className={styles.cellDate}
                     style={startDay > 2 && printOk === false || currentDay + 1 > lastDayOfMonth ? {backgroundColor: 'grey'}: {}}
+                    key={uniqueKey += 1}
                 >
                     <div className={styles.dateNumber}>
                         { 
@@ -127,6 +143,7 @@ const Calendar = () => {
                 <td 
                     className={styles.cellDate}
                     style={startDay > 3 && printOk === false || currentDay + 1 > lastDayOfMonth ? {backgroundColor: 'grey'}: {}}
+                    key={uniqueKey += 1}
                 >
                     <div className={styles.dateNumber}>
                         { 
@@ -145,6 +162,7 @@ const Calendar = () => {
                 <td 
                     className={styles.cellDate}
                     style={startDay > 4 && printOk === false || currentDay + 1 > lastDayOfMonth ? {backgroundColor: 'grey'}: {}}
+                    key={uniqueKey += 1}
                 >
                     <div className={styles.dateNumber}>
                         { 
@@ -163,6 +181,7 @@ const Calendar = () => {
                 <td 
                     className={styles.cellDate}
                     style={startDay > 5 && printOk === false || currentDay + 1 > lastDayOfMonth ? {backgroundColor: 'grey'}: {}}
+                    key={uniqueKey += 1}
                 >
                     <div className={styles.dateNumber}>
                         { 
@@ -181,6 +200,7 @@ const Calendar = () => {
                 <td 
                     className={styles.cellDate}
                     style={startDay > 6 && printOk === false || currentDay + 1 > lastDayOfMonth ? {backgroundColor: 'grey'}: {}}
+                    key={uniqueKey += 1}
                 >
                     <div className={styles.dateNumber}>
                         { 
@@ -205,17 +225,19 @@ const Calendar = () => {
 
     return (
 
-        <div>
-            {/** Pass useState hooks down to component which are used
+      
+            
+             <div className={styles.calendar_wrapper}>
+                {/** Pass useState hooks down to component which are used
              *   to find the current month and date by user input
              */}
-             <div className={styles.calendar_wrapper}>
                 <Header_Input 
                     month={month}
                     setMonth={setMonth}
                     year={year}
                     setYear={setYear}
                 />
+                
                 
 
                     {/** Sunday - Monday calendar header */}
@@ -231,7 +253,7 @@ const Calendar = () => {
                             <th className={styles.cell}> Sa </th>
                         </tr>
 
-
+                        {/** Output of calendar */}
                         {calendar}
 
                         </tbody>
@@ -239,7 +261,7 @@ const Calendar = () => {
 
                 
             </div>
-        </div>
+       
 
     )
 

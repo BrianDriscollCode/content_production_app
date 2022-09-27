@@ -1,4 +1,4 @@
-import styles from "../../styles/Calendar.module.scss";
+import styles from "../../compiled_styles/Calendar.module.css";
 import { useState, Dispatch, SetStateAction } from "react";
 
 interface stateProps{

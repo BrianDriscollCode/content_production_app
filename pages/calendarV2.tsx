@@ -7,10 +7,10 @@ import Calendar_Component from "../components/calendar/Calendar_Component";
 //V2 Calendar
 import Calendar_Main from "../components/calendarV2/Calendar_Main";
 
-const calendar: NextPage = () => {
+const calendarV2: NextPage = () => {
   return (
-        <Calendar_Component />
+        <Calendar_Main />
   )
 }
 
-export default calendar
+export default calendarV2
